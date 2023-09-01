@@ -1,16 +1,18 @@
 import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
-import Layout from '../layout';
+import React, { ReactNode, useEffect, useState } from 'react';
 import ToolbarSA from '../toolbar-sa';
 import { usePathname, useRouter } from 'next/navigation';
 
-const Sidebar = ({ children }) => {
+interface ISidebar {
+	children?: ReactNode;
+}
+
+const Sidebar = (props: ISidebar) => {
+	const { children } = props;
 	const pathname = usePathname();
-	console.log('location', pathname);
 	const router = useRouter();
 
 	const [collapsed, setCollapsed] = useState(false);
-	const [selectedTab, setSelectedTab] = useState('dashboard');
 
 	const [menuSidebar, setMenuSidebar] = useState([
 		{
