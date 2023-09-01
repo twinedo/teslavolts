@@ -48,35 +48,32 @@ const AuthPage = () => {
 										</p>
 									</div>
 									<div className='flex-col justify-start items-start gap-6 flex'>
-										<div className='flex-col justify-start items-start gap-4 flex'>
-											<div className='h-[84px] flex-col justify-start items-start gap-2 flex'>
-												<div className='w-[343px] h-5 justify-center items-center inline-flex'>
-													<div className='w-[343px] text-neutral-400 text-base font-medium leading-tight'>
+										<div className='w-full flex-col justify-start items-start gap-4 flex'>
+											<div className='w-full h-[84px] relative flex-col justify-start items-start gap-2 inline-flex'>
+												<div className='h-5 justify-center items-center inline-flex'>
+													<div className='text-neutral-400 text-base font-medium leading-tight'>
 														Email Address
 													</div>
 												</div>
-												<div className='self-stretch h-14 px-4 bg-white bg-opacity-10 rounded-lg border border-neutral-400 justify-start items-center inline-flex'>
+												<div className='w-full self-stretch h-14 px-4 bg-white bg-opacity-10 rounded-lg border border-neutral-400 justify-start items-center inline-flex'>
 													<input
-														className='grow shrink basis-0 text-neutral-500 text-base font-medium leading-tight border-none outline-none'
+														className='w-full grow shrink basis-0 text-neutral-500 text-base font-medium leading-tight border-none outline-none'
 														placeholder='enter your email'
-														type='email'
 													/>
 													<div className='w-6 h-6 justify-center items-center flex'>
-														<div className='w-6 h-6 relative'>
-															<AiOutlineMail color='stone-950' />
-														</div>
+														<AiOutlineMail />
 													</div>
 												</div>
 											</div>
-											<div className='grow shrink basis-0 flex-col justify-start items-start gap-2 flex'>
-												<div className='w-[343px] h-5 justify-center items-center inline-flex'>
-													<div className='w-[343px] text-neutral-400 text-base font-medium leading-tight'>
+											<div className='w-full h-[84px] relative flex-col justify-start items-start gap-2 inline-flex'>
+												<div className='h-5 justify-center items-center inline-flex'>
+													<div className='text-neutral-400 text-base font-medium leading-tight'>
 														Password
 													</div>
 												</div>
-												<div className='self-stretch h-14 px-4 bg-white bg-opacity-10 rounded-lg border border-neutral-400 justify-start items-center inline-flex'>
+												<div className='w-full self-stretch h-14 px-4 bg-white bg-opacity-10 rounded-lg border border-neutral-400 justify-start items-center inline-flex'>
 													<input
-														className='grow shrink basis-0 text-neutral-500 text-base font-medium leading-tight border-none outline-none'
+														className='w-full grow shrink basis-0 text-neutral-500 text-base font-medium leading-tight border-none outline-none'
 														placeholder='enter your password'
 														type={isShowPass ? 'password' : 'text'}
 													/>
@@ -161,14 +158,14 @@ const AuthPage = () => {
 									<div className='flex-col justify-start items-start gap-6 flex'>
 										<div className='flex-col justify-start items-start gap-4 flex'>
 											<div className='h-[84px] flex-col justify-start items-start gap-2 flex'>
-												<div className='w-[343px] h-5 justify-center items-center inline-flex'>
-													<div className='w-[343px] text-neutral-400 text-base font-medium leading-tight'>
+												<div className='h-5 justify-center items-center inline-flex'>
+													<div className='text-neutral-400 text-base font-medium leading-tight'>
 														Email Address
 													</div>
 												</div>
-												<div className='self-stretch h-14 px-4 bg-white bg-opacity-10 rounded-lg border border-neutral-400 justify-start items-center inline-flex'>
+												<div className='w-full self-stretch h-14 px-4 bg-white bg-opacity-10 rounded-lg border border-neutral-400 justify-start items-center inline-flex'>
 													<input
-														className='grow shrink basis-0 text-neutral-500 text-base font-medium leading-tight border-none outline-none'
+														className='w-full grow shrink basis-0 text-neutral-500 text-base font-medium leading-tight border-none outline-none'
 														placeholder='enter your email'
 														type='email'
 													/>
@@ -294,63 +291,59 @@ const AuthPage = () => {
 										</div>
 									</div>
 									<div className='h-[30px]' />
-									<div className='flex-col justify-start items-start gap-6 flex'>
-										<div className='h-[84px] relative'>
-											<div className='h-[84px] left-0 top-0 absolute flex-col justify-start items-start gap-2 inline-flex'>
-												<div className='h-5 justify-center items-center inline-flex'>
-													<div className='text-neutral-400 text-base font-medium leading-tight'>
-														New Password
-													</div>
+									<div className='flex-col w-full justify-start items-start gap-6 flex'>
+										<div className='w-full h-[84px] relative flex-col justify-start items-start gap-2 inline-flex'>
+											<div className='h-5 justify-center items-center inline-flex'>
+												<div className='text-neutral-400 text-base font-medium leading-tight'>
+													New Password
 												</div>
-												<div className='w-full self-stretch h-14 px-4 bg-white bg-opacity-10 rounded-lg border border-neutral-400 justify-start items-center inline-flex'>
-													<input
-														className='w-full grow shrink basis-0 text-neutral-500 text-base font-medium leading-tight border-none outline-none'
-														placeholder='enter your password'
-														type={isShowPass ? 'password' : 'text'}
-													/>
-													<div className='w-6 h-6 justify-center items-center flex'>
-														<div
-															className='w-6 h-6 relative'
-															onClick={() => setIsShowPass(!isShowPass)}>
-															{isShowPass ? (
-																<AiOutlineEye />
-															) : (
-																<AiOutlineEyeInvisible />
-															)}
-														</div>
+											</div>
+											<div className='w-full self-stretch h-14 px-4 bg-white bg-opacity-10 rounded-lg border border-neutral-400 justify-start items-center inline-flex'>
+												<input
+													className='w-full grow shrink basis-0 text-neutral-500 text-base font-medium leading-tight border-none outline-none'
+													placeholder='enter your password'
+													type={isShowPass ? 'password' : 'text'}
+												/>
+												<div className='w-6 h-6 justify-center items-center flex'>
+													<div
+														className='w-6 h-6 relative'
+														onClick={() => setIsShowPass(!isShowPass)}>
+														{isShowPass ? (
+															<AiOutlineEye />
+														) : (
+															<AiOutlineEyeInvisible />
+														)}
 													</div>
 												</div>
 											</div>
 										</div>
-										<div className='h-[84px] relative'>
-											<div className='w-[343px] h-[84px] left-0 top-0 absolute flex-col justify-start items-start gap-2 inline-flex'>
-												<div className='w-[343px] h-5 justify-center items-center inline-flex'>
-													<div className='w-[343px] text-neutral-400 text-base font-medium leading-tight'>
-														Confirm New Password
-													</div>
+										<div className='w-full h-[84px] relative flex-col justify-start items-start gap-2 inline-flex'>
+											<div className='w-[343px] h-5 justify-center items-center inline-flex'>
+												<div className='w-[343px] text-neutral-400 text-base font-medium leading-tight'>
+													Confirm New Password
 												</div>
-												<div className='self-stretch h-14 px-4 bg-white bg-opacity-10 rounded-lg border border-neutral-400 justify-start items-center inline-flex'>
-													<input
-														className='grow shrink basis-0 text-neutral-500 text-base font-medium leading-tight border-none outline-none'
-														placeholder='enter your password'
-														type={isShowPass ? 'password' : 'text'}
-													/>
-													<div className='w-6 h-6 justify-center items-center flex'>
-														<div
-															className='w-6 h-6 relative'
-															onClick={() => setIsShowPass(!isShowPass)}>
-															{isShowPass ? (
-																<AiOutlineEye />
-															) : (
-																<AiOutlineEyeInvisible />
-															)}
-														</div>
+											</div>
+											<div className='self-stretch h-14 px-4 bg-white bg-opacity-10 rounded-lg border border-neutral-400 justify-start items-center inline-flex'>
+												<input
+													className='grow shrink basis-0 text-neutral-500 text-base font-medium leading-tight border-none outline-none'
+													placeholder='enter your password'
+													type={isShowPass ? 'password' : 'text'}
+												/>
+												<div className='w-6 h-6 justify-center items-center flex'>
+													<div
+														className='w-6 h-6 relative'
+														onClick={() => setIsShowPass(!isShowPass)}>
+														{isShowPass ? (
+															<AiOutlineEye />
+														) : (
+															<AiOutlineEyeInvisible />
+														)}
 													</div>
 												</div>
 											</div>
 										</div>
-										<div className='flex-col justify-start items-start gap-4 flex'>
-											<div className='w-[343px] justify-start items-start inline-flex'>
+										<div className='w-full flex-col justify-start items-start gap-4 flex'>
+											<div className='w-full justify-start items-start inline-flex'>
 												<div className='grow shrink basis-0 h-14 px-8 py-[26px] bg-gradient-to-br from-blue-500 to-cyan-700 rounded-lg justify-center items-center gap-2 flex'>
 													<div className='text-center text-white text-base font-medium leading-3'>
 														Reset Password
