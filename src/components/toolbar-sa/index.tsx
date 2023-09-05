@@ -1,4 +1,5 @@
 import React from 'react';
+import { AiOutlineSearch } from 'react-icons/ai';
 
 function ToolbarSA() {
 	return (
@@ -8,13 +9,11 @@ function ToolbarSA() {
 				<div className='w-[391px] self-stretch pl-4 pr-[296px] py-4 bg-white rounded-2xl border border-zinc-100 justify-start items-center inline-flex'>
 					<div className='justify-start items-center gap-2 inline-flex'>
 						<div className='w-6 h-6 pl-[2.78px] pr-[2.46px] pt-[2.78px] pb-0.5 justify-center items-center flex'>
-							<div className='w-[18.76px] h-[19.22px] relative'>
-								<div className='w-[17.98px] h-[17.98px] left-0 top-0 absolute rounded-full border border-slate-900' />
-							</div>
+							<AiOutlineSearch size={32} />
 						</div>
 						<input
 							placeholder='Search'
-							className='w-[391px] text-center text-neutral-400 text-base font-normal leading-tight'
+							className='w-[391px] text-neutral-400 text-base font-normal leading-tight'
 						/>
 					</div>
 				</div>
