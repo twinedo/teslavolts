@@ -1,32 +1,18 @@
 'use client';
 
 import Sidebar from '@/components/sidebar';
-import React, { useState } from 'react';
+import React from 'react';
 import { FaArrowTrendUp, FaArrowTrendDown } from 'react-icons/fa6';
 import {
-	LineChart,
-	Line,
 	XAxis,
 	YAxis,
 	CartesianGrid,
 	Tooltip,
-	Legend,
 	Area,
 	ResponsiveContainer,
 	AreaChart,
-	ReferenceLine,
-} from 'recharts';
 
-const CustomVerticalLineLabel = ({ x, y, value }) => {
-	return (
-		<g transform={`translate(${x + 20}, ${y + 20})`}>
-			<text x={0} y={0} dy={-10} textAnchor='middle' fill='#666'>
-				₹ {value}
-			</text>
-			<line x1={0} y1={0} x2={0} y2={10} stroke='#666' />
-		</g>
-	);
-};
+} from 'recharts';
 
 const Dashboard = () => {
 	const data = [
