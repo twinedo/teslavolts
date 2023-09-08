@@ -1,7 +1,7 @@
 'use client';
 
 import Sidebar from '@/components/sidebar';
-import TableBookings from '@/components/table-bookings';
+import TableBookings, { DataItem } from '@/components/table-bookings';
 import React, { useState } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { FiFilter } from 'react-icons/fi';

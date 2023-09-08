@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { BiSortAlt2 } from 'react-icons/bi';
 import { PiDotsThreeOutlineVerticalFill } from 'react-icons/pi';
 
-type DataItem = {
+export type DataItem = {
+	id?: number;
 	stationName: string;
 	date: string;
 	timings: string;
@@ -20,12 +21,19 @@ type SortByProps = {
 };
 
 const TableBookings: React.FC<TableProps> = ({ data }) => {
-	const [sortBy, setSortBy] = useState<SortByProps>({
-		column: '',
+	const [sortBy, setSortBy] = useState<{
+		column: keyof DataItem | null;
+		direction: 'asc' | 'desc';
+	}>({
+		column: null,
 		direction: 'asc',
 	});
 
-	const handleSort = (column: string) => {
+	const handleSort = (column: keyof DataItem) => {
+		if (column === 'actions') {
+			return; // Ignore sorting for the "Actions" column
+		}
+
 		setSortBy((prev) => ({
 			column,
 			direction:
@@ -35,9 +43,9 @@ const TableBookings: React.FC<TableProps> = ({ data }) => {
 
 	const sortedData = [...data].sort((a, b) => {
 		if (sortBy.direction === 'asc') {
-			return (a[sortBy.column!] as any) > (b[sortBy.column!] as any) ? 1 : -1;
+			return a[sortBy.column!] > b[sortBy.column!] ? 1 : -1;
 		} else {
-			return (a[sortBy.column!] as any) < (b[sortBy.column!] as any) ? 1 : -1;
+			return a[sortBy.column!] < b[sortBy.column!] ? 1 : -1;
 		}
 	});
 
@@ -106,14 +114,7 @@ const TableBookings: React.FC<TableProps> = ({ data }) => {
 							)}
 						</div>
 					</th>
-					<th className='px-4 py-2 cursor-pointer'>
-						Actions{' '}
-						{/* {sortBy.column === 'age' && sortBy.direction === 'asc' ? (
-							<BiSortAlt2 color='black' />
-						) : (
-							<BiSortAlt2 color='grey' />
-						)} */}
-					</th>
+					<th className='px-4 py-2 cursor-pointer'>Actions </th>
 				</tr>
 			</thead>
 			<div className='h-6' />
