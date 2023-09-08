@@ -4,10 +4,12 @@ import { PiDotsThreeOutlineVerticalFill } from 'react-icons/pi';
 
 export type DataItem = {
 	id?: number;
-	stationName: string;
-	date: string;
-	timings: string;
-	address: string;
+	user: string;
+	tripName: string;
+	distance: string;
+	routeStation: string;
+	from: string;
+	to: string;
 	actions: any;
 };
 
@@ -15,7 +17,7 @@ type TableProps = {
 	data: DataItem[];
 };
 
-const TableBookings: React.FC<TableProps> = ({ data }) => {
+const TableTripPlanner: React.FC<TableProps> = ({ data }) => {
 	const [sortBy, setSortBy] = useState<{
 		column: keyof DataItem | null;
 		direction: 'asc' | 'desc';
@@ -46,7 +48,7 @@ const TableBookings: React.FC<TableProps> = ({ data }) => {
 
 	const handleOptionClick = (item: DataItem) => {
 		// Handle the option click for the given item
-		console.log(`Option clicked for item with ID#${item.stationName}`);
+		console.log(`Option clicked for item with ID#${item.tripName}`);
 	};
 
 	return (
@@ -55,12 +57,12 @@ const TableBookings: React.FC<TableProps> = ({ data }) => {
 				<tr>
 					<th
 						className='px-4 py-2 cursor-pointer'
-						onClick={() => handleSort('stationName')}>
+						onClick={() => handleSort('user')}>
 						<div className='flex flex-row items-center justify-center'>
 							<div className='text-neutral-500 text-base font-normal leading-tight'>
-								Station Name
+								User
 							</div>
-							{sortBy.column === 'stationName' && sortBy.direction === 'asc' ? (
+							{sortBy.column === 'user' && sortBy.direction === 'asc' ? (
 								<BiSortAlt2 color='black' />
 							) : (
 								<BiSortAlt2 color='#767676' />
@@ -69,12 +71,12 @@ const TableBookings: React.FC<TableProps> = ({ data }) => {
 					</th>
 					<th
 						className='px-4 py-2 cursor-pointer'
-						onClick={() => handleSort('date')}>
+						onClick={() => handleSort('tripName')}>
 						<div className='flex flex-row items-center justify-center'>
 							<div className='text-neutral-500 text-base font-normal leading-tight'>
-								Date
+								Trip Name
 							</div>
-							{sortBy.column === 'date' && sortBy.direction === 'asc' ? (
+							{sortBy.column === 'tripName' && sortBy.direction === 'asc' ? (
 								<BiSortAlt2 color='black' />
 							) : (
 								<BiSortAlt2 color='#767676' />
@@ -83,12 +85,12 @@ const TableBookings: React.FC<TableProps> = ({ data }) => {
 					</th>
 					<th
 						className='px-4 py-2 cursor-pointer'
-						onClick={() => handleSort('timings')}>
+						onClick={() => handleSort('distance')}>
 						<div className='flex flex-row justify-center items-center'>
 							<div className='text-neutral-500 text-base font-normal leading-tight'>
-								Timings
+								Distance
 							</div>
-							{sortBy.column === 'timings' && sortBy.direction === 'asc' ? (
+							{sortBy.column === 'distance' && sortBy.direction === 'asc' ? (
 								<BiSortAlt2 color='black' />
 							) : (
 								<BiSortAlt2 color='#767676' />
@@ -97,12 +99,41 @@ const TableBookings: React.FC<TableProps> = ({ data }) => {
 					</th>
 					<th
 						className='px-4 py-2 cursor-pointer'
-						onClick={() => handleSort('address')}>
+						onClick={() => handleSort('routeStation')}>
 						<div className='flex flex-row justify-center items-center '>
 							<div className='text-neutral-500 text-base font-normal leading-tight'>
-								Address
+								Route Station
 							</div>
-							{sortBy.column === 'address' && sortBy.direction === 'asc' ? (
+							{sortBy.column === 'routeStation' &&
+							sortBy.direction === 'asc' ? (
+								<BiSortAlt2 color='black' />
+							) : (
+								<BiSortAlt2 color='#767676' />
+							)}
+						</div>
+					</th>
+					<th
+						className='px-4 py-2 cursor-pointer'
+						onClick={() => handleSort('from')}>
+						<div className='flex flex-row justify-center items-center '>
+							<div className='text-neutral-500 text-base font-normal leading-tight'>
+								From
+							</div>
+							{sortBy.column === 'from' && sortBy.direction === 'asc' ? (
+								<BiSortAlt2 color='black' />
+							) : (
+								<BiSortAlt2 color='#767676' />
+							)}
+						</div>
+					</th>
+					<th
+						className='px-4 py-2 cursor-pointer'
+						onClick={() => handleSort('to')}>
+						<div className='flex flex-row justify-center items-center '>
+							<div className='text-neutral-500 text-base font-normal leading-tight'>
+								To
+							</div>
+							{sortBy.column === 'to' && sortBy.direction === 'asc' ? (
 								<BiSortAlt2 color='black' />
 							) : (
 								<BiSortAlt2 color='#767676' />
@@ -116,10 +147,12 @@ const TableBookings: React.FC<TableProps> = ({ data }) => {
 			<tbody>
 				{sortedData.map((row, i) => (
 					<tr key={i}>
-						<td className='px-4 py-2 text-center'>{row.stationName}</td>
-						<td className='px-4 py-2 text-center'>{row.date}</td>
-						<td className='px-4 py-2 text-center'>{row.timings}</td>
-						<td className='px-4 py-2 text-center'>{row.address}</td>
+						<td className='px-4 py-2 text-center'>{row.user}</td>
+						<td className='px-4 py-2 text-center'>{row.tripName}</td>
+						<td className='px-4 py-2 text-center'>{row.distance}</td>
+						<td className='px-4 py-2 text-center'>{row.routeStation}</td>
+						<td className='px-4 py-2 text-center'>{row.from}</td>
+						<td className='px-4 py-2 text-center'>{row.to}</td>
 						<td className='px-4 py-2 text-center'>
 							<button
 								className='rounded-full p-2 border'
@@ -133,4 +166,4 @@ const TableBookings: React.FC<TableProps> = ({ data }) => {
 		</table>
 	);
 };
-export default TableBookings;
+export default TableTripPlanner;
