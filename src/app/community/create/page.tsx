@@ -5,10 +5,10 @@ import React from 'react';
 import { BsArrowLeft, BsCalendarPlus, BsClock, BsSearch } from 'react-icons/bs';
 import { BiChevronDown, BiChevronUp, BiMapAlt } from 'react-icons/bi';
 
-const TripPlannerCreate = () => {
+const CommunityCreate = () => {
 	const breadcrumbItems = [
-		{ text: 'Trip Planner', link: '/trip-planner' },
-		{ text: 'Add Trip', link: '/trip-planner/create' },
+		{ text: 'Community', link: '/community' },
+		{ text: 'Add New Host', link: '/community/create' },
 	];
 
 	return (
@@ -24,7 +24,7 @@ const TripPlannerCreate = () => {
 							<Breadcrumb items={breadcrumbItems} />
 						</div>
 						<div className='text-black text-2xl font-medium leading-[30px]'>
-							Add Trip
+							Add New Host
 						</div>
 					</div>
 				</div>
@@ -35,13 +35,12 @@ const TripPlannerCreate = () => {
 						<div className='flex-col justify-center items-start gap-2 inline-flex'>
 							<div className='w-[343px] h-5 justify-center items-center inline-flex'>
 								<div className='w-[343px] text-neutral-400 text-base font-medium leading-tight'>
-									Trip Name
+									Host Name
 								</div>
 							</div>
 							<div className='self-stretch h-14 pl-4 bg-white bg-opacity-10 rounded-lg border border-stone-950 justify-start items-center inline-flex'>
 								<input
-									placeholder='Evening Red Dunes Desert'
-									value='Evening Red Dunes Desert'
+									placeholder='ambani.eth'
 									className='grow shrink basis-0 text-stone-950 text-base font-medium leading-tight outline-none'
 								/>
 							</div>
@@ -49,18 +48,18 @@ const TripPlannerCreate = () => {
 						<div className='flex-col justify-center items-start gap-2 inline-flex'>
 							<div className='w-[343px] h-5 justify-center items-center inline-flex'>
 								<div className='w-[343px] text-neutral-400 text-base font-medium leading-tight'>
-									Distance
+									Charging Location
 								</div>
 							</div>
 							<div className='self-stretch h-14 px-4 bg-white bg-opacity-10 rounded-lg border border-stone-950 justify-start items-center inline-flex'>
 								<input
-									placeholder='230 kms 5 hours'
+									placeholder='Troy Northwestern Properties'
 									className='grow shrink basis-0 text-stone-950 text-base font-medium leading-tight outline-none'
 								/>
 
 								<div className='w-6 h-6 justify-center items-center flex'>
 									<div className='w-6 h-6 relative'>
-										<BsCalendarPlus size={24} />
+										<BiMapAlt size={24} />
 									</div>
 								</div>
 							</div>
@@ -68,12 +67,12 @@ const TripPlannerCreate = () => {
 						<div className='flex-col justify-center items-start gap-2 inline-flex'>
 							<div className='w-[343px] h-5 justify-center items-center inline-flex'>
 								<div className='w-[343px] text-neutral-400 text-base font-medium leading-tight'>
-									Route Station
+									Timings
 								</div>
 							</div>
 							<div className='self-stretch h-14 px-4 bg-white bg-opacity-10 rounded-lg border border-stone-950 justify-start items-center inline-flex'>
 								<input
-									placeholder='3 Stations'
+									placeholder='09:00-09:00PM'
 									className='grow shrink basis-0 text-stone-950 text-base font-medium leading-tight outline-none'
 								/>
 
@@ -87,18 +86,44 @@ const TripPlannerCreate = () => {
 						<div className='flex-col justify-center items-start gap-2 inline-flex'>
 							<div className='w-[343px] h-5 justify-center items-center inline-flex'>
 								<div className='w-[343px] text-neutral-400 text-base font-medium leading-tight'>
-									From
+									MaxPower Supply
 								</div>
 							</div>
 							<div className='self-stretch h-14 px-4 bg-white bg-opacity-10 rounded-lg border border-stone-950 justify-start items-center inline-flex'>
 								<input
-									placeholder='Begumpet, Hyderabad'
+									placeholder='36 KWh'
+									className='grow shrink basis-0 text-stone-950 text-base font-medium leading-tight outline-none'
+								/>
+							</div>
+						</div>
+						<div className='flex-col justify-center items-start gap-2 inline-flex'>
+							<div className='w-[343px] h-5 justify-center items-center inline-flex'>
+								<div className='w-[343px] text-neutral-400 text-base font-medium leading-tight'>
+									Charging Price
+								</div>
+							</div>
+							<div className='self-stretch h-14 px-4 bg-white bg-opacity-10 rounded-lg border border-stone-950 justify-start items-center inline-flex'>
+								<input
+									placeholder='₹34'
+									className='grow shrink basis-0 text-stone-950 text-base font-medium leading-tight outline-none'
+								/>
+							</div>
+						</div>
+						<div className='flex-col justify-center items-start gap-2 inline-flex'>
+							<div className='w-[343px] h-5 justify-center items-center inline-flex'>
+								<div className='w-[343px] text-neutral-400 text-base font-medium leading-tight'>
+									Availability
+								</div>
+							</div>
+							<div className='self-stretch h-14 px-4 bg-white bg-opacity-10 rounded-lg border border-stone-950 justify-start items-center inline-flex'>
+								<input
+									placeholder='Approved'
 									className='grow shrink basis-0 text-stone-950 text-base font-medium leading-tight outline-none'
 								/>
 
 								<div className='w-6 h-6 justify-center items-center flex'>
 									<div className='w-6 h-6 relative'>
-										<BiMapAlt size={24} />
+										<BiChevronDown size={24} />
 									</div>
 								</div>
 							</div>
@@ -106,45 +131,7 @@ const TripPlannerCreate = () => {
 						<div className='flex-col justify-center items-start gap-2 inline-flex'>
 							<div className='w-[343px] h-5 justify-center items-center inline-flex'>
 								<div className='w-[343px] text-neutral-400 text-base font-medium leading-tight'>
-									To
-								</div>
-							</div>
-							<div className='self-stretch h-14 px-4 bg-white bg-opacity-10 rounded-lg border border-stone-950 justify-start items-center inline-flex'>
-								<input
-									placeholder='Begumpet, Hyderabad'
-									className='grow shrink basis-0 text-stone-950 text-base font-medium leading-tight outline-none'
-								/>
-
-								<div className='w-6 h-6 justify-center items-center flex'>
-									<div className='w-6 h-6 relative'>
-										<BiMapAlt size={24} />
-									</div>
-								</div>
-							</div>
-						</div>
-						<div className='flex-col justify-center items-start gap-2 inline-flex'>
-							<div className='w-[343px] h-5 justify-center items-center inline-flex'>
-								<div className='w-[343px] text-neutral-400 text-base font-medium leading-tight'>
-									Stations
-								</div>
-							</div>
-							<div className='self-stretch h-14 px-4 bg-white bg-opacity-10 rounded-lg border border-stone-950 justify-start items-center inline-flex'>
-								<input
-									placeholder='Taman Rumpun Bahagia 75300 Melaka'
-									className='grow shrink basis-0 text-stone-950 text-base font-medium leading-tight outline-none'
-								/>
-
-								<div className='w-6 h-6 justify-center items-center flex'>
-									<div className='w-6 h-6 relative'>
-										<BsSearch size={24} />
-									</div>
-								</div>
-							</div>
-						</div>
-						<div className='flex-col justify-center items-start gap-2 inline-flex'>
-							<div className='w-[343px] h-5 justify-center items-center inline-flex'>
-								<div className='w-[343px] text-neutral-400 text-base font-medium leading-tight'>
-									User Name
+									CPO or HOST/USER Name
 								</div>
 							</div>
 							<div className='self-stretch h-14 px-4 bg-white bg-opacity-10 rounded-lg border border-stone-950 justify-start items-center inline-flex'>
@@ -157,7 +144,7 @@ const TripPlannerCreate = () => {
 						<div className='flex-col justify-center items-start gap-2 inline-flex'>
 							<div className='w-[343px] h-5 justify-center items-center inline-flex'>
 								<div className='w-[343px] text-neutral-400 text-base font-medium leading-tight'>
-									User EV
+									IFSC CODE
 								</div>
 							</div>
 							<div className='self-stretch h-14 px-4 bg-white bg-opacity-10 rounded-lg border border-stone-950 justify-start items-center inline-flex'>
@@ -170,12 +157,25 @@ const TripPlannerCreate = () => {
 						<div className='flex-col justify-center items-center gap-2 inline-flex'>
 							<div className='w-[343px] h-5 justify-center items-center inline-flex'>
 								<div className='w-[343px] text-neutral-400 text-base font-medium leading-tight'>
-									Payment Status
+									Amount
 								</div>
 							</div>
 							<div className='self-stretch h-14 px-4 bg-white bg-opacity-10 rounded-lg border border-stone-950 justify-center items-center inline-flex'>
 								<input
-									placeholder='Wallbox DC Charger'
+									placeholder='500'
+									className='grow shrink basis-0 text-stone-950 text-base font-medium leading-tight outline-none'
+								/>
+							</div>
+						</div>
+						<div className='flex-col justify-center items-center gap-2 inline-flex'>
+							<div className='w-[343px] h-5 justify-center items-center inline-flex'>
+								<div className='w-[343px] text-neutral-400 text-base font-medium leading-tight'>
+									Withdrawal Method
+								</div>
+							</div>
+							<div className='self-stretch h-14 px-4 bg-white bg-opacity-10 rounded-lg border border-stone-950 justify-center items-center inline-flex'>
+								<input
+									placeholder='Razorpay'
 									className='grow shrink basis-0 text-stone-950 text-base font-medium leading-tight outline-none'
 								/>
 								<div className='w-6 h-6 justify-center items-center flex'>
@@ -183,6 +183,19 @@ const TripPlannerCreate = () => {
 										<BiChevronDown size={24} />
 									</div>
 								</div>
+							</div>
+						</div>
+						<div className='flex-col justify-center items-center gap-2 inline-flex'>
+							<div className='w-[343px] h-5 justify-center items-center inline-flex'>
+								<div className='w-[343px] text-neutral-400 text-base font-medium leading-tight'>
+									Contact Number
+								</div>
+							</div>
+							<div className='self-stretch h-14 px-4 bg-white bg-opacity-10 rounded-lg border border-stone-950 justify-center items-center inline-flex'>
+								<input
+									placeholder='345623459373'
+									className='grow shrink basis-0 text-stone-950 text-base font-medium leading-tight outline-none'
+								/>
 							</div>
 						</div>
 					</div>
@@ -199,7 +212,7 @@ const TripPlannerCreate = () => {
 						<div className='h-14 justify-start items-start flex'>
 							<div className='grow shrink basis-0 px-8 py-[26px] bg-gradient-to-br from-blue-500 to-cyan-700 rounded-lg justify-center items-center gap-2 flex'>
 								<div className='text-center text-white text-base font-medium leading-3'>
-									Save Booking
+									Add Host
 								</div>
 							</div>
 						</div>
@@ -210,4 +223,4 @@ const TripPlannerCreate = () => {
 	);
 };
 
-export default TripPlannerCreate;
+export default CommunityCreate;

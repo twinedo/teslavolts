@@ -5,7 +5,7 @@ import React from 'react';
 import { BsArrowLeft } from 'react-icons/bs';
 import { AiOutlineCheck } from 'react-icons/ai';
 
-const TripPlannerView = () => {
+const BookingsView = () => {
 	const MapImage = '/assets/img_trip_view.svg';
 	const breadcrumbItems = [
 		{ text: 'Trip Planner', link: '/trip-planner' },
@@ -96,4 +96,4 @@ const TripPlannerView = () => {
 	);
 };
 
-export default TripPlannerView;
+export default BookingsView;

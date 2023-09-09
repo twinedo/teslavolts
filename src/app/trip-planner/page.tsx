@@ -1,7 +1,7 @@
 'use client';
 
 import Sidebar from '@/components/sidebar';
-import TableBookings, { DataItem } from '@/components/table-bookings';
+import TableTripPlanner, { DataItem } from '@/components/table-trip-planner';
 import React, { useState } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { FiFilter } from 'react-icons/fi';
@@ -10,42 +10,52 @@ const TripPlanner = () => {
 	const data: DataItem[] = [
 		{
 			id: 1,
-			stationName: 'Wallbox DC Charger',
-			date: '16/07/2023',
-			timings: '10:30 AM - 11:30 AM ',
-			address: 'Begumpet, Hyderabad',
+			user: 'Bifrost Connect',
+			tripName: 'Evening Red Dunes Desert',
+			distance: '230 kms 5 hours',
+			routeStation: '3 Stations',
+			from: 'Begumpet, Hyderabad',
+			to: 'Begumpet, Hyderabad',
 			actions: '',
 		},
 		{
 			id: 2,
-			stationName: 'Wallbox DC Charger',
-			date: '16/07/2023',
-			timings: '10:30 AM - 11:30 AM ',
-			address: 'Begumpet, Hyderabad',
+			user: 'Bifrost Connect',
+			tripName: 'Evening Red Dunes Desert',
+			distance: '230 kms 5 hours',
+			routeStation: '3 Stations',
+			from: 'Begumpet, Hyderabad',
+			to: 'Begumpet, Hyderabad',
 			actions: '',
 		},
 		{
 			id: 3,
-			stationName: 'Wallbox DC Charger',
-			date: '16/07/2023',
-			timings: '10:30 AM - 11:30 AM ',
-			address: 'Begumpet, Hyderabad',
+			user: 'Bifrost Connect',
+			tripName: 'Evening Red Dunes Desert',
+			distance: '230 kms 5 hours',
+			routeStation: '3 Stations',
+			from: 'Begumpet, Hyderabad',
+			to: 'Begumpet, Hyderabad',
 			actions: '',
 		},
 		{
 			id: 4,
-			stationName: 'Wallbox DC Charger',
-			date: '16/07/2023',
-			timings: '10:30 AM - 11:30 AM ',
-			address: 'Begumpet, Hyderabad',
+			user: 'Bifrost Connect',
+			tripName: 'Evening Red Dunes Desert',
+			distance: '230 kms 5 hours',
+			routeStation: '3 Stations',
+			from: 'Begumpet, Hyderabad',
+			to: 'Begumpet, Hyderabad',
 			actions: '',
 		},
 		{
 			id: 5,
-			stationName: 'Wallbox DC Charger',
-			date: '16/07/2023',
-			timings: '10:30 AM - 11:30 AM ',
-			address: 'Begumpet, Hyderabad',
+			user: 'Bifrost Connect',
+			tripName: 'Evening Red Dunes Desert',
+			distance: '230 kms 5 hours',
+			routeStation: '3 Stations',
+			from: 'Begumpet, Hyderabad',
+			to: 'Begumpet, Hyderabad',
 			actions: '',
 		},
 	];
@@ -85,7 +95,7 @@ const TripPlanner = () => {
 				</div>
 				<div className='h-6' />
 				<div className='bg-white p-2 rounded-2xl overflow-hidden'>
-					<TableBookings data={data} />
+					<TableTripPlanner data={data} />
 				</div>
 			</div>
 		</Sidebar>
