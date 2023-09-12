@@ -7,12 +7,18 @@ import React, { useState } from 'react';
 import { AiOutlineSearch, AiOutlinePlusCircle } from 'react-icons/ai';
 import { FiFilter } from 'react-icons/fi';
 
+interface ITabMenu {
+	id: number;
+	name: string;
+	tab: 'customers' | 'cpo';
+}
+
 const UserManagement = () => {
 	const [currentTab, setCurrentTab] = useState<'customers' | 'cpo'>(
 		'customers'
 	);
 
-	const tabMenu = [
+	const tabMenu: ITabMenu[] = [
 		{
 			id: 1,
 			name: 'Customers',
@@ -160,7 +166,7 @@ const UserManagement = () => {
 					<div className='w-[196px] h-14 justify-start items-start inline-flex'>
 						<div className='px-4 py-[26px] flex flex-row items-center bg-gradient-to-br from-blue-500 to-cyan-700 rounded-lg justify-center items-center gap-2 flex'>
 							<div className='w-6 h-6 relative'>
-								<AiOutlinePlusCircle color="white" size={24} />
+								<AiOutlinePlusCircle color='white' size={24} />
 							</div>
 							<div className='text-center text-white text-base font-medium leading-3'>
 								Add New User
