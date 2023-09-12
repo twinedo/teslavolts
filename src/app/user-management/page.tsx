@@ -125,7 +125,7 @@ const UserManagement = () => {
 				<div className='text-black text-2xl font-medium leading-[30px]'>
 					User Management
 				</div>
-				<div className='h-8' />
+				<div className='h-6' />
 				<div className='flex flex-row items-center'>
 					{tabMenu.map((o) => (
 						<div
@@ -145,7 +145,7 @@ const UserManagement = () => {
 						</div>
 					))}
 				</div>
-				<div className='h-8' />
+				<div className='h-6' />
 				<div className='flex flex-row items-center justify-between'>
 					<div className='flex flex-row items-center'>
 						<div className='w-[599px] h-14 pl-4 py-4 bg-white rounded-2xl border border-zinc-100 justify-start items-center inline-flex'>
