@@ -1,25 +1,38 @@
 'use client';
 
+import Breadcrumb from '@/components/breadcrumb';
 import Sidebar from '@/components/sidebar';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { BiSolidChevronRight } from 'react-icons/bi';
+import { BsArrowLeft, BsRecordCircle, BsCircle } from 'react-icons/bs';
 
-const ContentManagement = () => {
+const UpdateAndManageFAQs = () => {
+	const breadcrumbItems = [
+		{ text: 'Content Management', link: '/content-management' },
+		{
+			text: 'Update & Manage App Content',
+			link: '/content-management/update-and-manage',
+		},
+		{
+			text: 'FAQs',
+			link: '/content-management/update-and-manage/faqs',
+		},
+	];
 	const menu = [
 		{
 			id: 1,
-			name: 'Update & Manage App Content',
+			name: 'FAQs',
 			navigate: '#',
 		},
 		{
 			id: 2,
-			name: 'Manage Notifications',
+			name: 'Announcements',
 			navigate: '#',
 		},
 		{
 			id: 3,
-			name: 'Customize Email Templates',
+			name: 'Terms & Conditions',
 			navigate: '/content-management/email-templates',
 		},
 	];
@@ -27,8 +40,19 @@ const ContentManagement = () => {
 	return (
 		<Sidebar>
 			<div className='w-full'>
-				<div className='text-black text-2xl font-medium leading-[30px]'>
-					Content Management
+				<div className='flex flex-row items-center'>
+					<div className='w-12 h-12 px-[13.71px] pt-[13.29px] pb-[14.14px] bg-white rounded-2xl border border-zinc-100 justify-center items-center inline-flex'>
+						<BsArrowLeft />
+					</div>
+					<div className='w-4' />
+					<div className='flex flex-col'>
+						<div className=''>
+							<Breadcrumb items={breadcrumbItems} />
+						</div>
+						<div className='text-black text-2xl font-medium leading-[30px]'>
+							Update & Manage App Content
+						</div>
+					</div>
 				</div>
 				<div className='h-6' />
 				<div className='w-full h-[754px] px-8 pt-8 pb-[456px] bg-white rounded-2xl border border-zinc-100 justify-center items-center inline-flex'>
@@ -55,4 +79,4 @@ const ContentManagement = () => {
 	);
 };
 
-export default ContentManagement;
+export default UpdateAndManageFAQs;
