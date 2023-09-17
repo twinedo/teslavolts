@@ -18,7 +18,7 @@ const ContentManagementNotifications = () => {
 
 	const [selectedTab, setSelectedTab] = useState(1);
 
-	const [tabMenu, setTabMenu] = useState([
+	const [tabMenu] = useState([
 		{
 			id: 1,
 			name: 'Users',

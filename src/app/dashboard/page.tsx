@@ -11,7 +11,6 @@ import {
 	Area,
 	ResponsiveContainer,
 	AreaChart,
-
 } from 'recharts';
 
 const Dashboard = () => {
@@ -36,7 +35,7 @@ const Dashboard = () => {
 				<div className='text-black text-2xl font-medium leading-[30px]'>
 					Dashboard
 				</div>
-				<div className='flex flex-row w-full border-2 items-center justify-between'>
+				<div className='flex flex-row w-full items-center justify-between'>
 					<div className='w-[25%] h-[124px] p-6 bg-white rounded-2xl border border-zinc-100 flex-col justify-start items-start gap-2.5 inline-flex'>
 						<div className='flex-col justify-start items-start gap-4 flex'>
 							<div className='text-center text-neutral-500 text-base font-normal leading-tight'>

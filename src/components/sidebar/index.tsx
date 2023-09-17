@@ -3,6 +3,7 @@ import Image from 'next/image';
 import React, { ReactNode, useEffect, useState } from 'react';
 import ToolbarSA from '../toolbar-sa';
 import { usePathname, useRouter } from 'next/navigation';
+import { BsDot } from 'react-icons/bs';
 
 interface ISidebar {
 	children?: ReactNode;
@@ -15,7 +16,7 @@ const Sidebar = (props: ISidebar) => {
 
 	const [collapsed, setCollapsed] = useState(false);
 
-	const [menuSidebar] = useState([
+	const [menuSidebar, setMenuSidebar] = useState([
 		{
 			id: 1,
 			name: 'Dashboard',
@@ -23,6 +24,8 @@ const Sidebar = (props: ISidebar) => {
 				? '/assets/ic_dashboard.svg'
 				: '/assets/ic_dashboard_i.svg',
 			navigate: '/dashboard',
+			isNested: false,
+			nested: [],
 		},
 		{
 			id: 2,
@@ -31,6 +34,8 @@ const Sidebar = (props: ISidebar) => {
 				? '/assets/ic_user_manage_a.svg'
 				: '/assets/ic_user_manage_i.svg',
 			navigate: '/user-management',
+			isNested: false,
+			nested: [],
 		},
 		{
 			id: 3,
@@ -39,6 +44,8 @@ const Sidebar = (props: ISidebar) => {
 				? '/assets/ic_charging_manage_a.svg'
 				: '/assets/ic_charging_manage_i.svg',
 			navigate: '/charging-management',
+			isNested: false,
+			nested: [],
 		},
 		{
 			id: 4,
@@ -47,6 +54,8 @@ const Sidebar = (props: ISidebar) => {
 				? '/assets/ic_charging_station_a.svg'
 				: '/assets/ic_charging_station_i.svg',
 			navigate: '/charging-station',
+			isNested: false,
+			nested: [],
 		},
 		{
 			id: 5,
@@ -55,6 +64,8 @@ const Sidebar = (props: ISidebar) => {
 				? '/assets/ic_booking_a.svg'
 				: '/assets/ic_booking_i.svg',
 			navigate: '/bookings',
+			isNested: false,
+			nested: [],
 		},
 		{
 			id: 6,
@@ -63,6 +74,8 @@ const Sidebar = (props: ISidebar) => {
 				? '/assets/ic_trip_plan_a.svg'
 				: '/assets/ic_trip_plan_i.svg',
 			navigate: '/trip-planner',
+			isNested: false,
+			nested: [],
 		},
 		{
 			id: 7,
@@ -71,6 +84,8 @@ const Sidebar = (props: ISidebar) => {
 				? '/assets/ic_community_a.svg'
 				: '/assets/ic_community_i.svg',
 			navigate: '/community',
+			isNested: false,
+			nested: [],
 		},
 		{
 			id: 8,
@@ -78,7 +93,36 @@ const Sidebar = (props: ISidebar) => {
 			icon: pathname.includes('/my-wallet')
 				? '/assets/ic_wallet_a.svg'
 				: '/assets/ic_wallet_i.svg',
-			navigate: '/my-wallet',
+			navigate: pathname.includes('/my-wallet/cpo-wallet')
+				? '/my-wallet/cpo-wallet'
+				: '/my-wallet/user-wallet',
+			isNested: pathname.includes('/my-wallet') ? true : false,
+			nested: [
+				{
+					id: 1,
+					name: 'User Wallet',
+					icon: pathname.includes('/my-wallet/user-wallet') ? (
+						<BsDot color='#407BBF' />
+					) : (
+						<BsDot color='#A1A1A1' />
+					),
+					navigate: '/my-wallet/user-wallet',
+					isNested: false,
+					nested: [],
+				},
+				{
+					id: 2,
+					name: 'CPO Wallet',
+					icon: pathname.includes('/my-wallet/cpo-wallet') ? (
+						<BsDot color='#407BBF' />
+					) : (
+						<BsDot color='#A1A1A1' />
+					),
+					navigate: '/my-wallet/cpo-wallet',
+					isNested: false,
+					nested: [],
+				},
+			],
 		},
 		{
 			id: 9,
@@ -86,7 +130,34 @@ const Sidebar = (props: ISidebar) => {
 			icon: pathname.includes('/billings-details')
 				? '/assets/ic_billing_a.svg'
 				: '/assets/ic_billing_i.svg',
-			navigate: '/billings-details',
+			navigate: pathname.includes('/billings-details/invoice') ? '/billings-details/invoice' : '/billings-details/payment-method',
+			isNested: pathname.includes('/billings-details') ? true : false,
+			nested: [
+				{
+					id: 1,
+					name: 'Payment Method',
+					icon: pathname.includes('/billings-details/payment-method') ? (
+						<BsDot color='#407BBF' />
+					) : (
+						<BsDot color='#A1A1A1' />
+					),
+					navigate: '/billings-details/payment-method',
+					isNested: false,
+					nested: [],
+				},
+				{
+					id: 2,
+					name: 'Invoice',
+					icon: pathname.includes('/billings-details/invoice') ? (
+						<BsDot color='#407BBF' />
+					) : (
+						<BsDot color='#A1A1A1' />
+					),
+					navigate: '/billings-details/invoice',
+					isNested: false,
+					nested: [],
+				},
+			],
 		},
 		{
 			id: 10,
@@ -95,6 +166,8 @@ const Sidebar = (props: ISidebar) => {
 				? '/assets/ic_content_manage_a.svg'
 				: '/assets/ic_content_manage_i.svg',
 			navigate: '/content-management',
+			isNested: false,
+			nested: [],
 		},
 		{
 			id: 11,
@@ -103,6 +176,8 @@ const Sidebar = (props: ISidebar) => {
 				? '/assets/ic_report_a.svg'
 				: '/assets/ic_report_i.svg',
 			navigate: '/reports',
+			isNested: false,
+			nested: [],
 		},
 	]);
 
@@ -146,35 +221,59 @@ const Sidebar = (props: ISidebar) => {
 					<div className='self-stretch h-[54px] px-[34px] flex-col justify-center items-start gap-2.5 inline-flex'>
 						<img className='w-[164px] h-[54px]' src='assets/Logo.png' />
 					</div>
-					<div className='flex-col justify-start items-start gap-2 inline-flex border-5 border-black'>
+					<div className='flex-col gap-2 inline-flex border-5 border-black'>
 						{menuSidebar.map((o) => (
-							<div
-								key={o.id.toString()}
-								onClick={() => router.push(o.navigate)}
-								className='w-[229px] h-12 justify-start items-center gap-4 inline-flex'>
+							<div key={o.id.toString()} className='flex flex-col'>
 								<div
-									className={`w-1.5 h-9 ${
-										pathname.includes(o.navigate) ? 'bg-blue-500' : 'bg-white'
-									}`}
-								/>
-								<div className='justify-start items-center gap-2 flex cursor-pointer'>
-									<Image
-										className='relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert'
-										src={o.icon}
-										alt='Next.js Logo'
-										width={24}
-										height={24}
-										priority
-									/>
+									onClick={() => {
+										router.push(o.navigate);
+									}}
+									className='w-[229px] h-12 justify-start items-center gap-4 inline-flex'>
 									<div
-										className={`text-center text-base font-medium leading-tight ${
-											pathname.includes(o.navigate)
-												? 'text-blue-500'
-												: 'text-neutral-400'
-										}`}>
-										{o.name}
+										className={`w-1.5 h-9 ${
+											pathname.includes(o.navigate) ? 'bg-blue-500' : 'bg-white'
+										}`}
+									/>
+									<div className='justify-start items-center gap-2 flex cursor-pointer'>
+										<Image
+											className='relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert'
+											src={o.icon}
+											alt='Next.js Logo'
+											width={24}
+											height={24}
+											priority
+										/>
+										<div
+											className={`text-center text-base font-medium leading-tight ${
+												pathname.includes(o.navigate)
+													? 'text-blue-500'
+													: 'text-neutral-400'
+											}`}>
+											{o.name}
+										</div>
 									</div>
 								</div>
+								{o.isNested &&
+									o.nested.map((o2) => (
+										<div
+											key={o2.id}
+											className='w-full flex flex-row ml-8 my-2 gap-2 cursor-pointer'>
+											<BsDot
+												color={
+													pathname.includes(o2.navigate) ? '#407BBF' : '#A1A1A1'
+												}
+												size={24}
+											/>
+											<div
+												className={`text-base font-medium leading-tight ${
+													pathname.includes(o2.navigate)
+														? 'text-blue-500'
+														: 'text-neutral-400'
+												}`}>
+												{o2.name}
+											</div>
+										</div>
+									))}
 							</div>
 						))}
 					</div>
