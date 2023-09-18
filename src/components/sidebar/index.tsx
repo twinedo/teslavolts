@@ -4,6 +4,7 @@ import React, { ReactNode, useEffect, useState } from 'react';
 import ToolbarSA from '../toolbar-sa';
 import { usePathname, useRouter } from 'next/navigation';
 import { BsDot } from 'react-icons/bs';
+import Link from 'next/link';
 
 interface ISidebar {
 	children?: ReactNode;
@@ -130,7 +131,9 @@ const Sidebar = (props: ISidebar) => {
 			icon: pathname.includes('/billings-details')
 				? '/assets/ic_billing_a.svg'
 				: '/assets/ic_billing_i.svg',
-			navigate: pathname.includes('/billings-details/invoice') ? '/billings-details/invoice' : '/billings-details/payment-method',
+			navigate: pathname.includes('/billings-details/invoice')
+				? '/billings-details/invoice'
+				: '/billings-details/payment-method',
 			isNested: pathname.includes('/billings-details') ? true : false,
 			nested: [
 				{
@@ -224,10 +227,11 @@ const Sidebar = (props: ISidebar) => {
 					<div className='flex-col gap-2 inline-flex border-5 border-black'>
 						{menuSidebar.map((o) => (
 							<div key={o.id.toString()} className='flex flex-col'>
-								<div
-									onClick={() => {
-										router.push(o.navigate);
-									}}
+								<Link
+									href={o.navigate}
+									// onClick={() => {
+									// 	router.push(o.navigate);
+									// }}
 									className='w-[229px] h-12 justify-start items-center gap-4 inline-flex'>
 									<div
 										className={`w-1.5 h-9 ${
@@ -252,10 +256,11 @@ const Sidebar = (props: ISidebar) => {
 											{o.name}
 										</div>
 									</div>
-								</div>
+								</Link>
 								{o.isNested &&
 									o.nested.map((o2) => (
-										<div
+										<Link
+											href={o2.navigate}
 											key={o2.id}
 											className='w-full flex flex-row ml-8 my-2 gap-2 cursor-pointer'>
 											<BsDot
@@ -272,7 +277,7 @@ const Sidebar = (props: ISidebar) => {
 												}`}>
 												{o2.name}
 											</div>
-										</div>
+										</Link>
 									))}
 							</div>
 						))}
