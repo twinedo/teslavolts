@@ -15,6 +15,7 @@ import {
 	ResponsiveContainer,
 	AreaChart,
 } from 'recharts';
+import Link from 'next/link';
 
 const ChargingManagementView = () => {
 	const MapImage = '/assets/img_trip_view.svg';
@@ -46,9 +47,12 @@ const ChargingManagementView = () => {
 			<div className='w-full'>
 				<div className='flex flex-row items-center justify-between'>
 					<div className='flex flex-row items-center'>
-						<div className='w-12 h-12 px-[13.71px] pt-[13.29px] pb-[14.14px] bg-white rounded-2xl border border-zinc-100 justify-center items-center inline-flex'>
-							<BsArrowLeft />
-						</div>
+					<Link
+						href='/charging-management'
+						passHref
+						className='w-12 h-12 px-[13.71px] pt-[13.29px] pb-[14.14px] bg-white rounded-2xl border border-zinc-100 justify-center items-center inline-flex cursor-pointer'>
+						<BsArrowLeft />
+					</Link>
 						<div className='w-4' />
 						<div className='flex flex-col'>
 							<div className=''>

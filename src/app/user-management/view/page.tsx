@@ -4,6 +4,7 @@ import Image from 'next/image';
 import React from 'react';
 import { BsArrowLeft } from 'react-icons/bs';
 import { AiOutlineCheck } from 'react-icons/ai';
+import Link from 'next/link';
 
 const UserManagementView = () => {
 	const MapImage = '/assets/img_trip_view.svg';
@@ -11,13 +12,17 @@ const UserManagementView = () => {
 		{ text: 'User Management', link: '/user-management' },
 		{ text: 'Bitfrost Connect', link: '/user-management/view' },
 	];
+
 	return (
 		<Sidebar>
 			<div className='w-full'>
 				<div className='flex flex-row items-center'>
-					<div className='w-12 h-12 px-[13.71px] pt-[13.29px] pb-[14.14px] bg-white rounded-2xl border border-zinc-100 justify-center items-center inline-flex'>
+					<Link
+						href='/user-management'
+						passHref
+						className='w-12 h-12 px-[13.71px] pt-[13.29px] pb-[14.14px] bg-white rounded-2xl border border-zinc-100 justify-center items-center inline-flex cursor-pointer'>
 						<BsArrowLeft />
-					</div>
+					</Link>
 					<div className='w-4' />
 					<div className='flex flex-col'>
 						<div className=''>
