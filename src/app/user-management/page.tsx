@@ -36,7 +36,7 @@ const UserManagement = () => {
 		{
 			id: 1,
 			fullName: 'Bifrost Connect',
-			userID: 'Evening Red Dunes Desert',
+			userID: '1',
 			email: '230 kms 5 hours',
 			contact: '3 Stations',
 			registrationDate: 'Begumpet, Hyderabad',
@@ -47,7 +47,7 @@ const UserManagement = () => {
 		{
 			id: 2,
 			fullName: 'Bifrost Connect',
-			userID: 'Evening Red Dunes Desert',
+			userID: '2',
 			email: '230 kms 5 hours',
 			contact: '3 Stations',
 			registrationDate: 'Begumpet, Hyderabad',
@@ -58,7 +58,7 @@ const UserManagement = () => {
 		{
 			id: 3,
 			fullName: 'Bifrost Connect',
-			userID: 'Evening Red Dunes Desert',
+			userID: '3',
 			email: '230 kms 5 hours',
 			contact: '3 Stations',
 			registrationDate: 'Begumpet, Hyderabad',
@@ -69,7 +69,7 @@ const UserManagement = () => {
 		{
 			id: 4,
 			fullName: 'Bifrost Connect',
-			userID: 'Evening Red Dunes Desert',
+			userID: '4',
 			email: '230 kms 5 hours',
 			contact: '3 Stations',
 			registrationDate: 'Begumpet, Hyderabad',
