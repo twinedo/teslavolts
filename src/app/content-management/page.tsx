@@ -10,12 +10,12 @@ const ContentManagement = () => {
 		{
 			id: 1,
 			name: 'Update & Manage App Content',
-			navigate: '#',
+			navigate: '/content-management/update-and-manage',
 		},
 		{
 			id: 2,
 			name: 'Manage Notifications',
-			navigate: '#',
+			navigate: '/content-management/manage-notifications',
 		},
 		{
 			id: 3,

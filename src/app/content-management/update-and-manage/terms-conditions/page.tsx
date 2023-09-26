@@ -6,6 +6,11 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import { BiSolidChevronRight } from 'react-icons/bi';
 import { BsArrowLeft, BsRecordCircle, BsCircle } from 'react-icons/bs';
+import {
+	PiDotsThreeOutlineVerticalFill,
+	PiPencilSimpleLineDuotone,
+	PiTrashSimpleLight,
+} from 'react-icons/pi';
 
 const UpdateAndManageTC = () => {
 	const breadcrumbItems = [
@@ -23,10 +28,11 @@ const UpdateAndManageTC = () => {
 	return (
 		<Sidebar>
 			<div className='w-full'>
+				<div className="flex flex-row items-center justify-between">
 				<div className='flex flex-row items-center'>
-					<div className='w-12 h-12 px-[13.71px] pt-[13.29px] pb-[14.14px] bg-white rounded-2xl border border-zinc-100 justify-center items-center inline-flex'>
+					<Link href="/content-management/update-and-manage" className='w-12 h-12 px-[13.71px] pt-[13.29px] pb-[14.14px] bg-white rounded-2xl border border-zinc-100 justify-center items-center inline-flex cursor-pointer'>
 						<BsArrowLeft />
-					</div>
+					</Link>
 					<div className='w-4' />
 					<div className='flex flex-col'>
 						<div className=''>
@@ -36,6 +42,12 @@ const UpdateAndManageTC = () => {
 							Terms & Conditions
 						</div>
 					</div>
+				</div>
+				<div>
+					<Link href="/content-management/update-and-manage/terms-conditions/update" className='w-12 h-12 px-[13.71px] pt-[13.29px] pb-[14.14px] bg-white rounded-2xl border border-zinc-100 justify-center items-center inline-flex cursor-pointer'>
+						<PiPencilSimpleLineDuotone />
+					</Link>
+				</div>
 				</div>
 				<div className='h-6' />
 				<div className='w-full h-[802px] px-8 pt-8 pb-[307px] bg-white rounded-2xl border border-zinc-100 justify-center items-center inline-flex'>

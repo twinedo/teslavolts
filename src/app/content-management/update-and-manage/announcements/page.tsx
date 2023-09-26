@@ -24,9 +24,9 @@ const UpdateAndManageAnnouncements = () => {
 		<Sidebar>
 			<div className='w-full'>
 				<div className='flex flex-row items-center'>
-					<div className='w-12 h-12 px-[13.71px] pt-[13.29px] pb-[14.14px] bg-white rounded-2xl border border-zinc-100 justify-center items-center inline-flex'>
+					<Link href="/content-management/update-and-manage" className='w-12 h-12 px-[13.71px] pt-[13.29px] pb-[14.14px] bg-white rounded-2xl border border-zinc-100 justify-center items-center inline-flex cursor-pointers'>
 						<BsArrowLeft />
-					</div>
+					</Link>
 					<div className='w-4' />
 					<div className='flex flex-col'>
 						<div className=''>

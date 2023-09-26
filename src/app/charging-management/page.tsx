@@ -75,7 +75,7 @@ const ChargingManagement = () => {
 					</div>
 					<Link
 						href='/charging-management/create'
-						className='w-[196px] h-14 justify-start items-start inline-flex cursor-pointer'>
+						className='h-14 justify-start items-start inline-flex cursor-pointer'>
 						<div className='px-4 py-4 flex flex-row items-center bg-gradient-to-br from-blue-500 to-cyan-700 rounded-lg justify-center gap-2'>
 							{/* <div className='w-6 h-6 relative'> */}
 							<AiOutlinePlusCircle color='white' size={24} />

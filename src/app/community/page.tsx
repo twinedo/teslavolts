@@ -5,6 +5,7 @@ import TableCommunity, { DataItem } from '@/components/table-community';
 import React, { useState } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { FiFilter } from 'react-icons/fi';
+import Link from 'next/link';
 
 const Community = () => {
 	const data: DataItem[] = [
@@ -67,13 +68,13 @@ const Community = () => {
 						</div>
 					</div>
 					<div>
-						<div className='w-[196px] h-14 justify-center items-center inline-flex'>
+						<Link href="/community/create" className='w-[196px] h-14 justify-center items-center inline-flex cursor-pointer'>
 							<div className='grow shrink basis-0 py-[26px] bg-gradient-to-br from-blue-500 to-cyan-700 rounded-lg justify-center items-center gap-2 flex'>
 								<div className='text-center text-white text-base font-medium leading-3'>
 									Add New Host
 								</div>
 							</div>
-						</div>
+						</Link>
 					</div>
 				</div>
 				<div className='h-6' />

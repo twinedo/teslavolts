@@ -6,11 +6,12 @@ import { BsArrowLeft, BsCalendarPlus, BsClock, BsSearch } from 'react-icons/bs';
 import { BiChevronDown, BiChevronUp, BiMapAlt } from 'react-icons/bi';
 import Modal from '@/components/modal';
 import Image from 'next/image';
+import Link from 'next/link';
 
-const ChargingManageUpdate = () => {
+const ChargingStationUpdate = () => {
 	const breadcrumbItems = [
-		{ text: 'Charging Management', link: '/charging-management' },
-		{ text: 'Edit Session', link: '/charging-management/update' },
+		{ text: 'Charging Station', link: '/charging-station' },
+		{ text: 'Edit Charging Station', link: '/charging-station/update' },
 	];
 
 	const [isModalOpen, setIsModalOpen] = useState(false);
@@ -27,16 +28,19 @@ const ChargingManageUpdate = () => {
 		<Sidebar>
 			<div className='w-full'>
 				<div className='flex flex-row items-center'>
-					<div className='w-12 h-12 px-[13.71px] pt-[13.29px] pb-[14.14px] bg-white rounded-2xl border border-zinc-100 justify-center items-center inline-flex'>
+					<Link
+						href='/charging-station'
+						passHref
+						className='w-12 h-12 px-[13.71px] pt-[13.29px] pb-[14.14px] bg-white rounded-2xl border border-zinc-100 justify-center items-center inline-flex'>
 						<BsArrowLeft />
-					</div>
+					</Link>
 					<div className='w-4' />
 					<div className='flex flex-col'>
 						<div className=''>
 							<Breadcrumb items={breadcrumbItems} />
 						</div>
 						<div className='text-black text-2xl font-medium leading-[30px]'>
-							Edit Session
+							Edit Charging Station
 						</div>
 					</div>
 				</div>
@@ -231,4 +235,4 @@ const ChargingManageUpdate = () => {
 	);
 };
 
-export default ChargingManageUpdate;
+export default ChargingStationUpdate;

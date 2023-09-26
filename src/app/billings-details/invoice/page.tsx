@@ -3,6 +3,7 @@
 import Sidebar from '@/components/sidebar';
 import TableCPO, { DataItem as DataCPO } from '@/components/table-cpo';
 import TableUserInvoices, { DataItem } from '@/components/table-user-invoices';
+import Link from 'next/link';
 import React, { useState } from 'react';
 import { AiOutlineSearch, AiOutlinePlusCircle } from 'react-icons/ai';
 import { FiFilter } from 'react-icons/fi';
@@ -157,7 +158,9 @@ const Invoice = () => {
 							</div>
 						</div>
 					</div>
-					<div className='w-[196px] h-14 justify-start items-start inline-flex'>
+					<Link
+						href='/billings-details/invoice/create'
+						className='w-[196px] h-14 justify-start items-start inline-flex cursor-pointer'>
 						<div className='px-4 py-[26px] flex flex-row items-center bg-gradient-to-br from-blue-500 to-cyan-700 rounded-lg justify-center gap-2'>
 							<div className='w-6 h-6 relative'>
 								<AiOutlinePlusCircle color='white' size={24} />
@@ -166,7 +169,7 @@ const Invoice = () => {
 								Add New Invoice
 							</div>
 						</div>
-					</div>
+					</Link>
 				</div>
 				<div className='h-6' />
 				{currentTab === 'user' ? (

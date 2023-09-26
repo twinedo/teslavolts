@@ -1,6 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { BiSortAlt2 } from 'react-icons/bi';
-import { PiDotsThreeOutlineVerticalFill } from 'react-icons/pi';
+import { BsToggleOn, BsToggleOff, BsShare } from 'react-icons/bs';
+import {
+	PiDotsThreeOutlineVerticalFill,
+	PiPencilSimpleLineDuotone,
+	PiTrashSimpleLight,
+} from 'react-icons/pi';
+import Modal from '@/components/modal';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export type DataItem = {
 	id?: number;
@@ -23,6 +31,19 @@ const TableBookings: React.FC<TableProps> = ({ data }) => {
 		column: null,
 		direction: 'asc',
 	});
+	type PopupsState = Record<string, boolean>;
+	const [newData, setNewData] = useState(data);
+	const popupContainerRef = useRef<HTMLDivElement>(null);
+
+	const [isModalOpen, setIsModalOpen] = useState(false);
+
+	const openModal = () => {
+		setIsModalOpen(true);
+	};
+
+	const closeModal = () => {
+		setIsModalOpen(false);
+	};
 
 	const handleSort = (column: keyof DataItem) => {
 		if (column === 'actions') {
@@ -34,19 +55,48 @@ const TableBookings: React.FC<TableProps> = ({ data }) => {
 			direction:
 				prev.column === column && prev.direction === 'asc' ? 'desc' : 'asc',
 		}));
+		const sortedData = [...data].sort((a, b) => {
+			if (sortBy.direction === 'asc') {
+				return a[sortBy.column!] > b[sortBy.column!] ? 1 : -1;
+			} else {
+				return a[sortBy.column!] < b[sortBy.column!] ? 1 : -1;
+			}
+		});
+		setNewData(sortedData);
 	};
 
-	const sortedData = [...data].sort((a, b) => {
-		if (sortBy.direction === 'asc') {
-			return a[sortBy.column!] > b[sortBy.column!] ? 1 : -1;
-		} else {
-			return a[sortBy.column!] < b[sortBy.column!] ? 1 : -1;
-		}
-	});
+	const [popups, setPopups] = useState<PopupsState>({});
+
+	useEffect(() => {
+		const handleEscapeKey = (event: KeyboardEvent) => {
+			if (event.key === 'Escape') {
+				setPopups({});
+			}
+		};
+		const handleOutsideClick = (event: MouseEvent) => {
+			if (
+				popupContainerRef.current &&
+				!popupContainerRef.current.contains(event.target as Node)
+			) {
+				setPopups({});
+			}
+		};
+
+		window.addEventListener('keydown', handleEscapeKey);
+		window.addEventListener('mousedown', handleOutsideClick);
+
+		return () => {
+			window.removeEventListener('keydown', handleEscapeKey);
+			window.removeEventListener('mousedown', handleOutsideClick);
+		};
+	}, []);
 
 	const handleOptionClick = (item: DataItem) => {
-		// Handle the option click for the given item
-		console.log(`Option clicked for item with ID#${item.stationName}`);
+		console.log(`Option clicked for item with ID#${item.id}`);
+		setPopups((prevState) => ({
+			...prevState,
+			[item.id!]: !prevState[item.id!],
+		}));
 	};
 
 	return (
@@ -114,18 +164,78 @@ const TableBookings: React.FC<TableProps> = ({ data }) => {
 			</thead>
 			<div className='h-6' />
 			<tbody>
-				{sortedData.map((row, i) => (
+				{newData.map((row, i) => (
 					<tr key={i}>
 						<td className='px-4 py-2 text-center'>{row.stationName}</td>
 						<td className='px-4 py-2 text-center'>{row.date}</td>
 						<td className='px-4 py-2 text-center'>{row.timings}</td>
 						<td className='px-4 py-2 text-center'>{row.address}</td>
-						<td className='px-4 py-2 text-center'>
+						<td className='px-4 py-2 text-center relative'>
 							<button
 								className='rounded-full p-2 border'
 								onClick={() => handleOptionClick(row)}>
 								<PiDotsThreeOutlineVerticalFill color='black' size={30} />
 							</button>
+							{popups[row.id!] && ( // Check if popup should be visible
+								<div
+									ref={popupContainerRef}
+									className='absolute top-0 right-0 z-10 w-[200px] text-left bg-white border border-1 p-2 gap-2'>
+									<Link
+										href='/bookings/update'
+										className='flex flex-row items-center py-2 cursor-pointer gap-2 bg-white hover:bg-[#F2F2F2]'>
+										<PiPencilSimpleLineDuotone />{' '}
+										<div className="text-neutral-700 text-base font-normal font-['SF Pro Display'] leading-tight">
+											Update Bookings
+										</div>
+									</Link>
+									<div
+										onClick={openModal}
+										className='flex flex-row items-center py-2 cursor-pointer gap-2 bg-white hover:bg-[#F2F2F2]'>
+										<PiTrashSimpleLight />{' '}
+										<div className="text-neutral-700 text-base font-normal font-['SF Pro Display'] leading-tight">
+											Cancel Bookings
+										</div>
+									</div>
+									<div className='flex flex-row items-center py-2 cursor-pointer gap-2 bg-white hover:bg-[#F2F2F2]'>
+										<BsShare />{' '}
+										<div className="text-neutral-700 text-base font-normal font-['SF Pro Display'] leading-tight">
+											Share Booking
+										</div>
+									</div>
+									<Modal isOpen={isModalOpen} onClose={closeModal}>
+										<div className='w-[400px] flex flex-col justify-center items-center'>
+											<Image
+												src='/assets/ic_trash_red.svg'
+												alt='trash'
+												width={80}
+												height={80}
+											/>
+											<div className='h-5 text-center text-stone-950 text-2xl font-semibold leading-loose'>
+												Delete Booking
+											</div>
+											<div className='h-6' />
+											<div className='text-center text-neutral-500 text-base font-medium leading-tight'>
+												Are you sure that you want to delete {row.stationName} ?
+											</div>
+											<div className='h-6' />
+											<div className='w-full flex flex-row justify-evenly items-center'>
+												<button className=' h-14 px-8 py-[26px] bg-rose-500 rounded-lg justify-center items-center gap-2 inline-flex'>
+													<div className='text-center text-white text-base font-medium leading-3'>
+														Yes, Delete
+													</div>
+												</button>
+												<button
+													onClick={closeModal}
+													className=' h-14 px-8 py-[26px] bg-zinc-100 rounded-lg justify-center items-center gap-2 inline-flex'>
+													<div className='text-center text-stone-950 text-base font-medium leading-3'>
+														No, Thanks
+													</div>
+												</button>
+											</div>
+										</div>
+									</Modal>
+								</div>
+							)}
 						</td>
 					</tr>
 				))}

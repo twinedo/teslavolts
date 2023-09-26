@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React, { useState, useEffect, useRef } from 'react';
 import { BiSortAlt2 } from 'react-icons/bi';
 import { BsToggleOn, BsToggleOff } from 'react-icons/bs';
@@ -6,6 +7,8 @@ import {
 	PiPencilSimpleLineDuotone,
 	PiTrashSimpleLight,
 } from 'react-icons/pi';
+import Modal from '@/components/modal';
+import Image from 'next/image';
 
 export type DataItem = {
 	id?: number;
@@ -35,6 +38,16 @@ const TableCustomers: React.FC<TableProps> = ({ data }) => {
 	type PopupsState = Record<string, boolean>;
 	const [newData, setNewData] = useState(data);
 	const popupContainerRef = useRef<HTMLDivElement>(null);
+
+	const [isModalOpen, setIsModalOpen] = useState(false);
+
+	const openModal = () => {
+		setIsModalOpen(true);
+	};
+
+	const closeModal = () => {
+		setIsModalOpen(false);
+	};
 
 	const handleSort = (column: keyof DataItem) => {
 		if (column === 'actions') {
@@ -225,13 +238,17 @@ const TableCustomers: React.FC<TableProps> = ({ data }) => {
 								<div
 									ref={popupContainerRef}
 									className='absolute top-0 right-0 z-10 w-[170px] text-left bg-white border border-1 p-2 gap-2'>
-									<div className='flex flex-row items-center py-2 cursor-pointer gap-2 bg-white hover:bg-[#F2F2F2]'>
+									<Link
+										href='/user-management/update'
+										className='flex flex-row items-center py-2 cursor-pointer gap-2 bg-white hover:bg-[#F2F2F2]'>
 										<PiPencilSimpleLineDuotone />{' '}
 										<div className="text-neutral-700 text-base font-normal font-['SF Pro Display'] leading-tight">
 											Edit User
 										</div>
-									</div>
-									<div className='flex flex-row items-center py-2 cursor-pointer gap-2 bg-white hover:bg-[#F2F2F2]'>
+									</Link>
+									<div
+										onClick={openModal}
+										className='flex flex-row items-center py-2 cursor-pointer gap-2 bg-white hover:bg-[#F2F2F2]'>
 										<PiTrashSimpleLight />{' '}
 										<div className="text-neutral-700 text-base font-normal font-['SF Pro Display'] leading-tight">
 											Delete User
@@ -243,6 +260,38 @@ const TableCustomers: React.FC<TableProps> = ({ data }) => {
 											Enabled
 										</div>
 									</div>
+									<Modal isOpen={isModalOpen} onClose={closeModal}>
+										<div className='w-[400px] flex flex-col justify-center items-center'>
+											<Image
+												src='/assets/ic_trash_red.svg'
+												alt='trash'
+												width={80}
+												height={80}
+											/>
+											<div className='h-5 text-center text-stone-950 text-2xl font-semibold leading-loose'>
+												Delete Booking
+											</div>
+											<div className='h-6' />
+											<div className='text-center text-neutral-500 text-base font-medium leading-tight'>
+												Are you sure that you want to delete {row.fullName} ?
+											</div>
+											<div className='h-6' />
+											<div className='w-full flex flex-row justify-evenly items-center'>
+												<button className=' h-14 px-8 py-[26px] bg-rose-500 rounded-lg justify-center items-center gap-2 inline-flex'>
+													<div className='text-center text-white text-base font-medium leading-3'>
+														Yes, Delete
+													</div>
+												</button>
+												<button
+													onClick={closeModal}
+													className=' h-14 px-8 py-[26px] bg-zinc-100 rounded-lg justify-center items-center gap-2 inline-flex'>
+													<div className='text-center text-stone-950 text-base font-medium leading-3'>
+														No, Thanks
+													</div>
+												</button>
+											</div>
+										</div>
+									</Modal>
 								</div>
 							)}
 						</td>

@@ -21,23 +21,6 @@ const UpdateAndManageFAQ = () => {
 			link: '/content-management/update-and-manage/faqs',
 		},
 	];
-	const menu = [
-		{
-			id: 1,
-			name: 'FAQs',
-			navigate: '#',
-		},
-		{
-			id: 2,
-			name: 'Announcements',
-			navigate: '#',
-		},
-		{
-			id: 3,
-			name: 'Terms & Conditions',
-			navigate: '/content-management/email-templates',
-		},
-	];
 
 	const [faqList, setFaqList] = useState([
 		{
@@ -75,9 +58,11 @@ const UpdateAndManageFAQ = () => {
 			<div className='w-full'>
 				<div className='w-full flex flex-row items-center justify-between'>
 					<div className='flex flex-row items-center'>
-						<div className='w-12 h-12 px-[13.71px] pt-[13.29px] pb-[14.14px] bg-white rounded-2xl border border-zinc-100 justify-center items-center inline-flex'>
+						<Link
+							href='/content-management/update-and-manage'
+							className='w-12 h-12 px-[13.71px] pt-[13.29px] pb-[14.14px] bg-white rounded-2xl border border-zinc-100 justify-center items-center inline-flex cursor-pointer'>
 							<BsArrowLeft />
-						</div>
+						</Link>
 						<div className='w-4' />
 						<div className='flex flex-col'>
 							<div className=''>
@@ -88,16 +73,16 @@ const UpdateAndManageFAQ = () => {
 							</div>
 						</div>
 					</div>
-					<div className='w-12 h-12  bg-white rounded-2xl border border-zinc-100 justify-center items-center inline-flex'>
+					<Link href="/content-management/update-and-manage/edit-faqs" className='w-12 h-12  bg-white rounded-2xl border border-zinc-100 justify-center items-center inline-flex'>
 						<div className='w-[20.57px] h-[20.57px] flex-col justify-center items-center inline-flex'>
 							<PiPencilSimpleLineDuotone size={24} />
 						</div>
-					</div>
+					</Link>
 				</div>
 				<div className='h-6' />
 				<div className='w-full flex flex-col px-8 pt-8 pb-[456px] bg-white rounded-2xl border border-zinc-100 justify-center items-center'>
 					{faqList.map((o) => (
-						<div key={o.id} className='w-full py-4 flex flex-col border-b-2'>
+						<div key={o.id} onClick={() => _onOpen(o.id)} className='w-full py-4 flex flex-col border-b-2 cursor-pointer'>
 							<div className='w-full flex flex-row justify-between items-center'>
 								<div className="text-black text-lg font-medium font-['SF Pro Display'] leading-tight">
 									{o.title}

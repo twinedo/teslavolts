@@ -1,7 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { BiSortAlt2 } from 'react-icons/bi';
 import { BsToggleOn, BsToggleOff } from 'react-icons/bs';
-import { PiDotsThreeOutlineVerticalFill } from 'react-icons/pi';
+import {
+	PiDotsThreeOutlineVerticalFill,
+	PiPencilSimpleLineDuotone,
+	PiTrashSimpleLight,
+} from 'react-icons/pi';
+import Modal from '@/components/modal';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export type DataItem = {
 	id?: number;
@@ -25,7 +32,19 @@ const TableChargingManagement: React.FC<TableProps> = ({ data }) => {
 		column: null,
 		direction: 'asc',
 	});
+	type PopupsState = Record<string, boolean>;
 	const [newData, setNewData] = useState(data);
+	const popupContainerRef = useRef<HTMLDivElement>(null);
+
+	const [isModalOpen, setIsModalOpen] = useState(false);
+
+	const openModal = () => {
+		setIsModalOpen(true);
+	};
+
+	const closeModal = () => {
+		setIsModalOpen(false);
+	};
 
 	const handleSort = (column: keyof DataItem) => {
 		if (column === 'actions') {
@@ -47,9 +66,38 @@ const TableChargingManagement: React.FC<TableProps> = ({ data }) => {
 		setNewData(sortedData);
 	};
 
+	const [popups, setPopups] = useState<PopupsState>({});
+
+	useEffect(() => {
+		const handleEscapeKey = (event: KeyboardEvent) => {
+			if (event.key === 'Escape') {
+				setPopups({});
+			}
+		};
+		const handleOutsideClick = (event: MouseEvent) => {
+			if (
+				popupContainerRef.current &&
+				!popupContainerRef.current.contains(event.target as Node)
+			) {
+				setPopups({});
+			}
+		};
+
+		window.addEventListener('keydown', handleEscapeKey);
+		window.addEventListener('mousedown', handleOutsideClick);
+
+		return () => {
+			window.removeEventListener('keydown', handleEscapeKey);
+			window.removeEventListener('mousedown', handleOutsideClick);
+		};
+	}, []);
+
 	const handleOptionClick = (item: DataItem) => {
-		// Handle the option click for the given item
 		console.log(`Option clicked for item with ID#${item.id}`);
+		setPopups((prevState) => ({
+			...prevState,
+			[item.id!]: !prevState[item.id!],
+		}));
 	};
 
 	const handleStatusClick = (item: DataItem) => {
@@ -155,12 +203,72 @@ const TableChargingManagement: React.FC<TableProps> = ({ data }) => {
 								)}
 							</button>
 						</td>
-						<td className='px-4 py-2 text-center'>
+						<td className='px-4 py-2 text-center relative'>
 							<button
 								className='rounded-full p-2 border'
 								onClick={() => handleOptionClick(row)}>
 								<PiDotsThreeOutlineVerticalFill color='black' size={30} />
 							</button>
+							{popups[row.id!] && ( // Check if popup should be visible
+								<div
+									ref={popupContainerRef}
+									className='absolute top-0 right-0 z-10 w-[170px] text-left bg-white border border-1 p-2 gap-2'>
+									<Link
+										href='/charging-management/update'
+										className='flex flex-row items-center py-2 cursor-pointer gap-2 bg-white hover:bg-[#F2F2F2]'>
+										<PiPencilSimpleLineDuotone />{' '}
+										<div className="text-neutral-700 text-base font-normal font-['SF Pro Display'] leading-tight">
+											Edit User
+										</div>
+									</Link>
+									<div
+										onClick={openModal}
+										className='flex flex-row items-center py-2 cursor-pointer gap-2 bg-white hover:bg-[#F2F2F2]'>
+										<PiTrashSimpleLight />{' '}
+										<div className="text-neutral-700 text-base font-normal font-['SF Pro Display'] leading-tight">
+											Delete User
+										</div>
+									</div>
+									<div className='flex flex-row items-center py-2 cursor-pointer gap-2 bg-white hover:bg-[#F2F2F2]'>
+										<BsToggleOff />{' '}
+										<div className="text-neutral-700 text-base font-normal font-['SF Pro Display'] leading-tight">
+											Enabled
+										</div>
+									</div>
+									<Modal isOpen={isModalOpen} onClose={closeModal}>
+										<div className='w-[400px] flex flex-col justify-center items-center'>
+											<Image
+												src='/assets/ic_trash_red.svg'
+												alt='trash'
+												width={80}
+												height={80}
+											/>
+											<div className='h-5 text-center text-stone-950 text-2xl font-semibold leading-loose'>
+												Delete Booking
+											</div>
+											<div className='h-6' />
+											<div className='text-center text-neutral-500 text-base font-medium leading-tight'>
+												Are you sure that you want to delete {row.sessionName} ?
+											</div>
+											<div className='h-6' />
+											<div className='w-full flex flex-row justify-evenly items-center'>
+												<button className=' h-14 px-8 py-[26px] bg-rose-500 rounded-lg justify-center items-center gap-2 inline-flex'>
+													<div className='text-center text-white text-base font-medium leading-3'>
+														Yes, Delete
+													</div>
+												</button>
+												<button
+													onClick={closeModal}
+													className=' h-14 px-8 py-[26px] bg-zinc-100 rounded-lg justify-center items-center gap-2 inline-flex'>
+													<div className='text-center text-stone-950 text-base font-medium leading-3'>
+														No, Thanks
+													</div>
+												</button>
+											</div>
+										</div>
+									</Modal>
+								</div>
+							)}
 						</td>
 					</tr>
 				))}

@@ -17,6 +17,7 @@ import TableChargingStation, {
 	DataItem,
 } from '@/components/table-charging-station';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const ChargingStation = () => {
 	const MapView = '/assets/charging_stat_map.svg';
@@ -71,11 +72,16 @@ const ChargingStation = () => {
 					</div>
 					<div className='flex flex-row items-center gap-2'>
 						{isMapView ? (
-							<BsToggleOff size={24} onClick={() => setIsMapView(!isMapView)} />
-						) : (
 							<BsToggleOn
+								className='cursor-pointer'
 								size={24}
 								color='#4185C6'
+								onClick={() => setIsMapView(!isMapView)}
+							/>
+						) : (
+							<BsToggleOff
+								className='cursor-pointer'
+								size={24}
 								onClick={() => setIsMapView(!isMapView)}
 							/>
 						)}
@@ -126,7 +132,9 @@ const ChargingStation = () => {
 								)}
 							</div>
 						</div>
-						<div className='w-[196px] h-14 justify-start items-start inline-flex'>
+						<Link
+							href='/charging-station/create'
+							className='w-[196px] h-14 justify-start items-start inline-flex cursor-pointer'>
 							<div className='px-4 py-4 flex flex-row items-center bg-gradient-to-br from-blue-500 to-cyan-700 rounded-lg justify-center gap-2'>
 								<div className='w-6 h-6 relative'>
 									<AiOutlinePlusCircle color='white' size={24} />
@@ -135,7 +143,7 @@ const ChargingStation = () => {
 									Add New Station
 								</div>
 							</div>
-						</div>
+						</Link>
 					</div>
 				</div>
 				<div className='h-6' />

@@ -16,7 +16,7 @@ const ChargingManageCreate = () => {
 		<Sidebar>
 			<div className='w-full'>
 				<div className='flex flex-row items-center'>
-				<Link
+					<Link
 						href='/charging-management'
 						passHref
 						className='w-12 h-12 px-[13.71px] pt-[13.29px] pb-[14.14px] bg-white rounded-2xl border border-zinc-100 justify-center items-center inline-flex cursor-pointer'>
@@ -157,25 +157,28 @@ const ChargingManageCreate = () => {
 									placeholder='Wallbox DC Charger'
 									className='grow shrink basis-0 text-stone-950 text-base font-medium leading-tight outline-none'
 								/>
-							<div className='w-6 h-6 justify-center items-center flex'>
-								<div className='w-6 h-6 relative'>
-									<BiMapAlt size={24} />
+								<div className='w-6 h-6 justify-center items-center flex'>
+									<div className='w-6 h-6 relative'>
+										<BiMapAlt size={24} />
+									</div>
 								</div>
-							</div>
 							</div>
 						</div>
 					</div>
 					{/* </div> */}
 					<div className='self-stretch justify-end items-end gap-4 inline-flex'>
-						<div className='h-14 justify-start items-start inline-flex'>
+						<div className='h-14 justify-start items-start inline-flex cursor-pointer'>
 							<div className='grow shrink basis-0 px-8 py-[26px] bg-white rounded-lg border border-blue-500 justify-center items-center gap-2 flex'>
-								<div className='text-center text-blue-500 text-base font-medium leading-3'>
+								<Link
+									href='/charging-management'
+									className='text-center text-blue-500 text-base font-medium leading-3'
+									>
 									Cancel
-								</div>
+								</Link>
 							</div>
 						</div>
 						<div className='w-6' />
-						<div className='h-14 justify-start items-start flex'>
+						<div className='h-14 justify-start items-start flex cursor-pointer'>
 							<div className='grow shrink basis-0 px-8 py-[26px] bg-gradient-to-br from-blue-500 to-cyan-700 rounded-lg justify-center items-center gap-2 flex'>
 								<div className='text-center text-white text-base font-medium leading-3'>
 									Add Session
