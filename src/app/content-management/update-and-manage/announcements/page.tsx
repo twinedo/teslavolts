@@ -6,6 +6,14 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import { BiSolidChevronRight } from 'react-icons/bi';
 import { BsArrowLeft, BsRecordCircle, BsCircle } from 'react-icons/bs';
+import * as Yup from 'yup';
+import { useFormik } from 'formik';
+
+const UpdateAnnounceSchema = Yup.object().shape({
+	title: Yup.string()
+		.required('Required'),
+	detail: Yup.string().required('Required'),
+});
 
 const UpdateAndManageAnnouncements = () => {
 	const breadcrumbItems = [
@@ -19,6 +27,18 @@ const UpdateAndManageAnnouncements = () => {
 			link: '/content-management/update-and-manage/announcements',
 		},
 	];
+
+	const formik = useFormik({
+		initialValues: {
+			title: '',
+			detail: '',
+		},
+		validationSchema: UpdateAnnounceSchema,
+		onSubmit: (values) => {
+			console.log('submitform', values);
+		},
+	});
+
 
 	return (
 		<Sidebar>
@@ -50,6 +70,8 @@ const UpdateAndManageAnnouncements = () => {
 								<div className='w-full h-14 pl-4 bg-white bg-opacity-10 rounded-lg border border-stone-950 justify-start items-center inline-flex'>
 									<input
 										placeholder='What is Lorem Ipsum?'
+										value={formik.values.title}
+										onChange={(e) => formik.setFieldValue('title', e.target.value)}
 										className="w-full grow shrink outline-none basis-0 text-stone-950 text-base font-medium font-['SF Pro Display'] leading-tight"
 									/>
 								</div>
@@ -62,6 +84,8 @@ const UpdateAndManageAnnouncements = () => {
 								</div>
 
 								<textarea
+									value={formik.values.detail}
+									onChange={(e) => formik.setFieldValue('detail', e.target.value)}
 									placeholder='Lorem Ipsum is simply dummy text of the printing and
 										typesetting industry. Lorem Ipsum has been the industry`s
 										standard dummy text ever since the 1500s, when an unknown
@@ -78,7 +102,7 @@ const UpdateAndManageAnnouncements = () => {
 						</div>
 					</div>
 					<div className='w-full cursor-pointer justify-end items-end'>
-						<div className='w-[250px] grow shrink basis-0 px-3 py-[26px] bg-gradient-to-br from-blue-500 to-cyan-700 rounded-lg justify-center items-center gap-2 flex'>
+						<div className='w-[250px] grow shrink basis-0 px-3 py-[26px] bg-gradient-to-br from-blue-500 to-cyan-700 rounded-lg justify-center items-center gap-2 flex cursor-pointer' onClick={() => formik.handleSubmit()}>
 							<div className="text-center text-white text-base font-medium font-['SF Pro Display'] leading-3">
 								Submit Announcements
 							</div>

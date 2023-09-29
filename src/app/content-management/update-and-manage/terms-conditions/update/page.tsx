@@ -6,6 +6,12 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import { BiSolidChevronRight } from 'react-icons/bi';
 import { BsArrowLeft, BsRecordCircle, BsCircle } from 'react-icons/bs';
+import * as Yup from 'yup';
+import { useFormik } from 'formik';
+
+const UpdateTCSchema = Yup.object().shape({
+	detail: Yup.string().required('Required'),
+});
 
 const UpdateAndManageTCUpdate = () => {
 	const breadcrumbItems = [
@@ -23,6 +29,16 @@ const UpdateAndManageTCUpdate = () => {
 			link: '/content-management/update-and-manage/terms-conditions/update',
 		},
 	];
+
+	const formik = useFormik({
+		initialValues: {
+			detail: '',
+		},
+		validationSchema: UpdateTCSchema,
+		onSubmit: (values) => {
+			console.log('submitform', values);
+		},
+	});
 
 	return (
 		<Sidebar>
@@ -51,6 +67,8 @@ const UpdateAndManageTCUpdate = () => {
 						</div>
 
 						<textarea
+							value={formik.values.detail}
+							onChange={(e) => formik.setFieldValue('detail', e.target.value)}
 							placeholder='Lorem Ipsum is simply dummy text of the printing and typesetting
 								industry. Lorem Ipsum has been the industry`s standard dummy
 								text ever since the 1500s, when an unknown printer took a galley
@@ -63,7 +81,7 @@ const UpdateAndManageTCUpdate = () => {
 								Lorem Ipsum.'
 							className="w-full h-[292px] pl-4 pt-4 bg-white bg-opacity-10 rounded-lg border border-stone-950 justify-center items-start inline-flex grow shrink basis-0 text-stone-950 text-base font-normal font-['SF Pro Display'] leading-tight"></textarea>
 					</div>
-					<div className='w-[198px] justify-start items-start inline-flex'>
+					<div className='w-[198px] justify-start items-start inline-flex cursor-pointer' onClick={() => formik.handleSubmit()}>
 						<div className='grow shrink basis-0 px-8 py-[26px] bg-gradient-to-br from-blue-500 to-cyan-700 rounded-lg justify-center items-center gap-2 flex'>
 							<div className="text-center text-white text-base font-medium font-['SF Pro Display'] leading-3">
 								Update Terms
